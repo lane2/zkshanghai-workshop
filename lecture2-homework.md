@@ -150,7 +150,7 @@ component main = Selector(4);
 ```
 ## 判负 IsNegative
 
-这里不太明白为什么不能用LessThan，然后用输入和 ct值比较呢？
+LessThan能判断的值范围只有252位，用正常的负数（p=254位）会出错
 
 ## 少于 LessThan
 
