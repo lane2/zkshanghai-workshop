@@ -152,4 +152,42 @@ component main = Selector(4);
 
 ## 少于 LessThan
 
+```
+pragma circom 2.1.4;
+
+
+template Num2Bits (nBits) {
+    signal input in;
+    signal output b[nBits];
+    
+    var sum = 0;
+    for(var i = 0; i < nBits; i++){
+        b[i] <-- (in \ (2** i)) % 2;
+        sum = sum + b[i] * 2**i;
+        0 === b[i] * (b[i] -1);
+    }
+
+    in === sum;
+}
+
+template LessThan(n) {
+    assert(n <= 252);
+    signal input in[2];
+    signal output out;
+
+    component n2b = Num2Bits(n+1);
+
+    n2b.in <== (1<<n) + in[1] - in[0];
+
+    out <== n2b.b[n];
+}
+
+component main = LessThan(4);
+
+/*
+INPUT = {
+    "in": ["15", "14"]
+}
+*/
+```
 ## 整数除法 IntegerDivide
