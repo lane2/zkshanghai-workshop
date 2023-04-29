@@ -52,6 +52,38 @@ component main = IsZero();
 
 ## 第3题 相等 IsEqual
 
+```
+pragma circom 2.1.4;
+
+template IsZero () {
+    signal input in;
+    signal output out;
+
+    signal inv;
+
+    inv <-- in == 0? 0 : 1/in;
+
+    out <== -in * inv + 1;
+    0 === in * out;    
+}
+
+template IsEqual(){
+    signal input in[2];
+    signal output out;
+
+    component isZero = IsZero();
+    isZero.in <== in[0] - in[1] ;
+    out <== isZero.out;
+}
+
+component main = IsEqual();
+
+/* INPUT = {
+    "in": ["231", "232"]
+} */
+```
+
+
 ## 选择器 Selector
 
 ## 判负 IsNegative
