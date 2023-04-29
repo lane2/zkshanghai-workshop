@@ -1,8 +1,31 @@
 # 第2课 课后作业
 
 ## 第1题 转换为bit位 Num2Bits
+```
+pragma circom 2.1.4;
 
-xxxxxx
+
+template Num2Bits (nBits) {
+    signal input in;
+    signal output b[nBits];
+    
+    var sum = 0;
+    for(var i = 0; i < nBits; i++){
+        b[i] <-- (in \ (2** i)) % 2;
+        sum = sum + b[i] * 2**i;
+        0 === b[i] * (b[i] -1);
+    }
+
+    in === sum;
+
+}
+
+component main  = Num2Bits(3);
+
+/* INPUT = {
+    "in": "5"
+} */
+```
 
 ## 第2题 判零 IsZero
 
