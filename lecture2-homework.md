@@ -28,6 +28,27 @@ component main  = Num2Bits(3);
 ```
 
 ## 第2题 判零 IsZero
+```
+pragma circom 2.1.4;
+
+template IsZero () {
+    signal input in;
+    signal output out;
+
+    signal inv;
+
+    inv <-- in == 0? 0 : 1/in;
+
+    out <== -in * inv + 1;
+    0 === in * out;    
+}
+
+component main = IsZero();
+
+/* INPUT = {
+    "in": "0"
+} */
+```
 
 ## 第3题 相等 IsEqual
 
