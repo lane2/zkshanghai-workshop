@@ -150,6 +150,8 @@ component main = Selector(4);
 ```
 ## 判负 IsNegative
 
+这里不太明白为什么不能用LessThan，然后用输入和 ct值比较呢？
+
 ## 少于 LessThan
 
 ```
